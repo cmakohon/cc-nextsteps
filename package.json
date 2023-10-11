@@ -2,6 +2,11 @@
   "name": "app",
   "private": "true",
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --loader:.js=jsx"
+  },
+  "dependencies": {
+    "esbuild": "^0.19.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
