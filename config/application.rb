@@ -37,3 +37,9 @@ module CcNextsteps
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+CcNextsteps::Application.configure do
+  config.sass.preferred_syntax = :scss
+  config.sass.line_comments = false
+  config.sass.cache = false
+end
