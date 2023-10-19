@@ -1,44 +1,19 @@
-import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import React, { useState } from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { ccTheme } from "./theme";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import CCStepper from "./components/CCStepper";
 import ProgressProvider from "./ProgressContext";
 import CssBaseline from "@mui/material/CssBaseline";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Welcome from "./components/Welcome";
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 
 export default function App() {
-  const ccTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        light: "#deca18",
-        main: "#deb306",
-        dark: "#dd9b00",
-        contrastText: "#000",
-      },
-      secondary: {
-        light: "#e6e6e6",
-        main: "#c4c4c4",
-        dark: "#7c7c7c",
-        contrastText: "#000",
-      },
-    },
-    typography: {
-      fontFamily: [
-        "-apple-system",
-        "BlinkMacSystemFont",
-        '"Work Sans"',
-        '"Helvetica Neue"',
-        "Arial",
-        "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(","),
-    },
-  });
-
+  const [showWelcome, setShowWelcome] = useState(true);
   return (
     <ThemeProvider theme={ccTheme}>
       <ProgressProvider>
@@ -60,8 +35,20 @@ export default function App() {
                 <strong>Next Steps</strong>
               </Typography>
             </Grid>
+            <Box sx={{ width: '100%'}}>
+              <Divider variant="middle" sx={{mt: 4, mb: 2, backgroundColor: "primary.main"}} />
+            </Box>
             <Grid item xs={12}>
-              <CCStepper />
+              {showWelcome ? <Welcome /> : <CCStepper />}
+            </Grid>
+            <Grid item xs={12}>
+              {showWelcome && (<Button
+                variant="contained"
+                onClick={() => setShowWelcome(false)}
+                sx={{ mt: 1 }}
+              >
+                Are You Ready?
+              </Button> )}
             </Grid>
           </Grid>
         </Container>
