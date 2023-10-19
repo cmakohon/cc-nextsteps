@@ -36,7 +36,7 @@ export default function App() {
               </Typography>
             </Grid>
             <Box sx={{ width: '100%'}}>
-              <Divider variant="middle" sx={{mt: 4, mb: 2, backgroundColor: "primary.main"}} />
+              <Divider variant="middle" sx={{mt: 4, mb: 2, mr: 0, backgroundColor: "primary.main"}} />
             </Box>
             <Grid item xs={12}>
               {showWelcome ? <Welcome /> : <CCStepper />}

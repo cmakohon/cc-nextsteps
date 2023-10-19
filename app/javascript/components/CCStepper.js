@@ -7,42 +7,56 @@ import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProgressContext } from "../ProgressContext";
+import Video from "./Video";
 
 export default function CCStepper() {
   const { progress, storeProgress } = useContext(ProgressContext)
 
   const steps = [
     {
-      label: "Select campaign settings",
-      description: `For each ad campaign that you create, you can control how much
-                    you're willing to spend on clicks and conversions, which networks
-                    and geographical locations you want your ads to show on, and more.`,
+      label: "How We Move",
+      component: <Video url="https://www.youtube.com/embed/1eJOjoywp9A" title="Move Session 1: How We Move"/>
     },
     {
-      label: "Create an ad group",
-      description:
-        "An ad group contains one or more ads which target a shared set of keywords.",
+      label: "Move In Our Gifting",
+      component: <Video url="https://www.youtube.com/embed/RIeDF18RpbM" title="Move Session 2: How We Move in Our Gifting"/>
     },
     {
-      label: "Create an ad",
-      description: `Try out different ad text to see what brings in the most customers,
-                    and learn how to enhance your ads using features like ad extensions.
-                    If you run into any problems with your ads, find out how to tell if
-                    they're running and how to resolve approval issues.`,
+      label: "Move In Our Resources",
+      component: <Video url="https://www.youtube.com/embed/5V8TOxpQrzI" title="Move: Move With Our Resources"/>
     },
+    {
+      label: "Move Towards Rescue",
+      component: <Video url="https://www.youtube.com/embed/muFNSfUWdOY" title="Move: How We Move Towards Rescue"/>
+    },
+    {
+      label: "Move Together",
+      component: <Video url="https://www.youtube.com/embed/kZR2yDPRc6k" title="Move: How We Move Together"/>
+    },
+    {
+      label: "Next Steps Form",
+      component: <span>Form</span>
+    }
   ];
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     setActiveStep(progress.currentStep)
-  }, [progress])
+  }, [])
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
-      storeProgress({
-        currentStep: prevActiveStep + 1,
-        formData: {}
-      })
+      if (prevActiveStep + 1 === steps.length) {
+        storeProgress({
+          currentStep: 0,
+          formData: {}
+        })
+      } else {
+        storeProgress({
+          currentStep: prevActiveStep + 1,
+          formData: {}
+        })
+      }
       return prevActiveStep + 1;
     });
   };
@@ -72,16 +86,16 @@ export default function CCStepper() {
           <Step key={step.label}>
             <StepLabel
               optional={
-                index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
+                index === 4 ? (
+                  <Typography variant="caption">Last video</Typography>
                 ) : null
               }
             >
               {step.label}
             </StepLabel>
             <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
+              <Box>{step.component}</Box>
+              <Box sx={{ mb: 2, mt: 1 }}>
                 <div>
                   <Button
                     variant="contained"
