@@ -45,7 +45,7 @@ export default function App() {
               {showWelcome && (<Button
                 variant="contained"
                 onClick={() => setShowWelcome(false)}
-                sx={{ mt: 1 }}
+                sx={{ mt: 1, mb: 3 }}
               >
                 Are You Ready?
               </Button> )}
