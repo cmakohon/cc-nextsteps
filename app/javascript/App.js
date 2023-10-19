@@ -22,7 +22,7 @@ export default function App() {
           <Grid container spacing={2} sx={{ mt: 2 }}>
             <Grid item xs={4} sm={2}>
               <img
-                src="assets/whitecrown.png"
+                src="/whitecrown.png"
                 alt="Center City Logo"
                 width={100}
               />
