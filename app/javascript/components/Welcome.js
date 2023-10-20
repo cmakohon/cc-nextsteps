@@ -11,7 +11,7 @@ export default function Welcome() {
       <Typography variant="body1" sx={{mt: 3, mb: 2}} gutterBottom>
         We know connecting to a church can sometimes be difficult, so we put together the Move to help you. These sessions have three primary objectives:
       </Typography>
-      <Typography variant="h5" sx={{mt: 4, mb: 0}} gutterBottom>
+      <Typography variant="h5" sx={{mt: 6, mb: 0}} gutterBottom>
         OUR <Box color={"primary.main"} display='inline'>FIRST</Box> OBJECTIVE:  
       </Typography>
       <Typography variant="h6" gutterBottom>
@@ -29,7 +29,7 @@ export default function Welcome() {
       <Typography variant="h6" gutterBottom>
         <strong>To connect you in partnership to the amazing Center City Church family.</strong>
       </Typography>
-      <Typography variant="body1" sx={{mt: 4}} gutterBottom>
+      <Typography variant="body1" sx={{mt: 6}} gutterBottom>
         Once you're done, fill out the NEXT STEPS Survey and we will connect with you. If you need to take a break at any point, feel free to leave and come back. Your progress will be saved for you after every step.
       </Typography>
     </Box>
