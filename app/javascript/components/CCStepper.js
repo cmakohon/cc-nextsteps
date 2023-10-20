@@ -7,10 +7,12 @@ import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProgressContext } from "../ProgressContext";
+import ConfirmationModal from "./ConfirmationModal";
 import Video from "./Video";
 
 export default function CCStepper() {
   const { progress, storeProgress } = useContext(ProgressContext)
+  const [ confirmationOpen, setConfirmationOpen ] = useState(false);
 
   const steps = [
     {
@@ -71,6 +73,10 @@ export default function CCStepper() {
     });
   };
 
+  const confirmReset = () => {
+    setConfirmationOpen(true);
+  }
+
   const handleReset = () => {
     setActiveStep(0);
     storeProgress({
@@ -112,8 +118,7 @@ export default function CCStepper() {
                     Back
                   </Button>
                   <Button
-                    disabled={index === 0}
-                    onClick={handleReset}
+                    onClick={confirmReset}
                     sx={{ mt: 1, mr: 1 }}
                   >
                     Start Over
@@ -124,6 +129,12 @@ export default function CCStepper() {
           </Step>
         ))}
       </Stepper>
+      <ConfirmationModal
+          keepMounted
+          open={confirmationOpen}
+          onClose={() => setConfirmationOpen(false)}
+          value={null}
+        />
     </>
   );
 }
