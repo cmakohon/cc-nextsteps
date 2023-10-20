@@ -30,7 +30,7 @@ export default function Welcome() {
         <strong>To connect you in partnership to the amazing Center City Church family.</strong>
       </Typography>
       <Typography variant="body1" sx={{mt: 4}} gutterBottom>
-        Once you're done, fill out the NEXT STEPS Survey and we will connect with you. If you need to take a break at any point, feel free to leave and come back. Your progress will be saved for you.
+        Once you're done, fill out the NEXT STEPS Survey and we will connect with you. If you need to take a break at any point, feel free to leave and come back. Your progress will be saved for you after every step.
       </Typography>
     </Box>
   )
