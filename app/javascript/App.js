@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Welcome from "./components/Welcome";
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Footer from "./components/Footer";
 
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -19,7 +20,7 @@ export default function App() {
       <ProgressProvider>
         <Container component="main" maxWidth="md">
           <CssBaseline />
-          <Grid container spacing={2} sx={{ mt: 2 }}>
+          <Grid container spacing={2} sx={{ mt: 2 }} id="start">
             <Grid item xs={4} sm={2}>
               <img
                 src="/whitecrown.png"
@@ -41,14 +42,18 @@ export default function App() {
             <Grid item xs={12}>
               {showWelcome ? <Welcome /> : <CCStepper />}
             </Grid>
-            <Grid item xs={12}>
+            <Grid container item xs={12} justifyContent={"center"}>
               {showWelcome && (<Button
                 variant="contained"
                 onClick={() => setShowWelcome(false)}
-                sx={{ mt: 1, mb: 3 }}
+                sx={{ mt: 2, mb: 0 }}
+                href="#start"
               >
                 Are You Ready?
               </Button> )}
+            </Grid>
+            <Grid item xs={12} sx={{mt: 4}}>
+              <Footer />
             </Grid>
           </Grid>
         </Container>
