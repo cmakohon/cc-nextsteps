@@ -1,23 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
-import { ProgressContext } from "../ProgressContext";
+import { useProgress } from "../store";
 
 export default function ConfirmationModal({ onClose, valueProp, open, ...other }) {
-  const { storeProgress } = useContext(ProgressContext);
+  const { reset } = useProgress();
 
   const handleCancel = () => {
     onClose();
   };
 
   const handleOk = () => {
-    storeProgress({
-      currentStep: -1,
-      formData: {},
-    })
+    reset();
     onClose();
   };
 
