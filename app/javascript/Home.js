@@ -1,35 +1,61 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import CCStepper from "./components/CCStepper";
-import { ProgressContext } from "./ProgressContext";
+import { useProgress } from "./store";
 import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Welcome from "./components/Welcome";
 import Divider from "@mui/material/Divider";
+import Snackbar from "@mui/material/Snackbar";
+import SnackbarContent from "@mui/material/SnackbarContent";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Footer from "./components/Footer";
 
 export default function Home() {
-  const [showWelcome, setShowWelcome] = useState(true);
-  const { progress, storeProgress } = useContext(ProgressContext);
+  const [snackOpen, setSnackOpen] = useState(false);
+  const { currentStep, incrCurrentStep } = useProgress();
+
+  const handleClose = () => {
+    setSnackOpen(false);
+  };
 
   useEffect(() => {
-    if (progress) {
-      setShowWelcome(progress.currentStep < 0);
+    if (currentStep > -1) {
+      setSnackOpen(true)
     }
-  }, [progress]);
+  }, [])
 
-  const start = () => {
-    storeProgress({
-      currentStep: 0,
-      formData: {},
-    });
-  };
+  const action = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
 
   return (
     <Container component="main" maxWidth="md">
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        autoHideDuration={4000}
+        open={snackOpen}
+        onClose={handleClose}
+      >
+        <SnackbarContent
+          message="Welcome back! We saved your progress."
+          action={action}
+          sx={{ backgroundColor: "primary.main" }}
+        />
+      </Snackbar>
       <CssBaseline />
       <Grid container spacing={2} sx={{ mt: 2 }} id="start">
         <Grid item xs={3} sm={2}>
@@ -47,13 +73,13 @@ export default function Home() {
           />
         </Box>
         <Grid item xs={12}>
-          {showWelcome ? <Welcome /> : <CCStepper />}
+          {currentStep < 0 ? <Welcome /> : <CCStepper />}
         </Grid>
         <Grid container item xs={12} justifyContent={"center"}>
-          {showWelcome && (
+          {currentStep < 0 && (
             <Button
               variant="contained"
-              onClick={start}
+              onClick={incrCurrentStep}
               sx={{ mt: 2, mb: 0 }}
               href="#start"
             >
